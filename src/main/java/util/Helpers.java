@@ -1,5 +1,6 @@
 package util;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.Dimension;
@@ -25,7 +26,12 @@ public class Helpers {
 
     private final PointerInput FINGER = new PointerInput(TOUCH, "finger");
 
-    public void swipeVertically(IOSDriver driver, Directions direction) {
+    public void scrollToElementWithText(AndroidDriver driver, String text) {
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).setAsVerticalList()" +
+                ".scrollIntoView(new UiSelector().text(\"" + text + "\").instance(0));"));
+    }
+
+    public void swipeVertically(AndroidDriver driver, Directions direction) {
         int startX = driver.manage().window().getSize().getWidth() / 2;
         int startY = driver.manage().window().getSize().getHeight() / 2;
 
@@ -46,28 +52,11 @@ public class Helpers {
         driver.perform(List.of(swipe));
     }
 
-    public void scrollTo(IOSDriver driver, WebElement el, Directions direction, int swipeCount) {
-        IntStream.range(0, swipeCount).forEach(obj -> {
-            if (!el.isDisplayed())
-                swipeVertically(driver, direction);
-        });
+    public void swipeVertically(AndroidDriver driver, Directions direction, int numberOfScrolls) {
+        for (int i = 0; i <= numberOfScrolls; i++) {
+            swipeVertically(driver, direction);
+        }
     }
-
-    public void longPress(IOSDriver driver, WebElement el) {
-        Point location = getCenter(el);
-        Sequence longPressAction = new Sequence(FINGER, 0);
-        longPressAction.addAction(FINGER.createPointerMove(ZERO, viewport(), location.x, location.y));
-        longPressAction.addAction(FINGER.createPointerDown(LEFT.asArg()));
-        longPressAction.addAction(FINGER.createPointerMove(ofSeconds(1), viewport(), location.x, location.y));
-        longPressAction.addAction(FINGER.createPointerUp(LEFT.asArg()));
-        driver.perform(List.of(longPressAction));
-    }
-
-    public Point getCenter(WebElement el) {
-        Point location = el.getLocation();
-        Dimension size = el.getSize();
-        return new Point(location.x + size.getWidth() / 2, location.y + size.getHeight() / 2);
-    }
-
-
 }
+
+

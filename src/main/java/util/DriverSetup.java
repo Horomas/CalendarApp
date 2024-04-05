@@ -28,8 +28,12 @@ public class DriverSetup extends ConfigReader {
     protected pages.LoginPage loginPage;
     protected TripInformationEntryPage tripInformationEntryPage;
     protected SearchResultsPage searchResultsPage;
-//    protected SearchPage searchPage;
-//    protected ProfilePage profilePage;
+    protected SavedPage savedPage;
+    protected MyNextTripPage myNextTripPage;
+    protected SignInPage signInPage;
+    protected SettingsPage settingsPage;
+    protected CurrencyPage currencyPage;
+    protected PrivacyPolicyPage privacyPolicyPage;
 
     @BeforeMethod
     public void setUp() {
@@ -60,7 +64,11 @@ public class DriverSetup extends ConfigReader {
         loginPage = new LoginPage(driver);
         tripInformationEntryPage = new TripInformationEntryPage(driver);
         searchResultsPage = new SearchResultsPage(driver);
-//        searchPage = new SearchPage(driver);
-//        profilePage = new ProfilePage(driver);
+        savedPage = new SavedPage(driver);
+        myNextTripPage = new MyNextTripPage(driver);
+        signInPage = new SignInPage(driver);
+        settingsPage = new SettingsPage(driver);
+        currencyPage = new CurrencyPage(driver);
+        privacyPolicyPage = new PrivacyPolicyPage(driver);
     }
 }

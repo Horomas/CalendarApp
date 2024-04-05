@@ -60,6 +60,11 @@ public class TripInformationEntryPage {
     private RemoteWebElement searchDataDestination;
     @AndroidFindBy(id = "com.booking:id/searchbox_dates")
     private RemoteWebElement searchDataDate;
+    @AndroidFindBy(accessibility = "Saved")
+    private RemoteWebElement savedItems;
+
+    @AndroidFindBy(accessibility = "Sign in")
+    private RemoteWebElement signInSection;
 
 
 
@@ -121,6 +126,12 @@ public class TripInformationEntryPage {
     public boolean searchDestinationLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(searchDataDate)).isDisplayed();
     }
+    public boolean savedIsLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(savedItems)).isDisplayed();
+    }
+    public boolean signInSectionButtonLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(signInSection)).isDisplayed();
+    }
 
     public void clickTripDatesButton() {
         tripDatesPopup.click();
@@ -179,6 +190,13 @@ public class TripInformationEntryPage {
 
     public void clickSearchForTripButton() {
         searchForTrip.click();
+    }
+
+    public void clickSavedButton() {
+        savedItems.click();
+    }
+    public void clickSignInSectionButton() {
+        signInSection.click();
     }
 
 
