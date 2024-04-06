@@ -21,15 +21,12 @@ public class Helpers {
 
     public enum Directions {
         UP,
+        LEFT,
+        RIGHT,
         DOWN
     }
 
     private final PointerInput FINGER = new PointerInput(TOUCH, "finger");
-
-    public void scrollToElementWithText(AndroidDriver driver, String text) {
-        driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).setAsVerticalList()" +
-                ".scrollIntoView(new UiSelector().text(\"" + text + "\").instance(0));"));
-    }
 
     public void swipeVertically(AndroidDriver driver, Directions direction) {
         int startX = driver.manage().window().getSize().getWidth() / 2;
@@ -52,9 +49,36 @@ public class Helpers {
         driver.perform(List.of(swipe));
     }
 
+    public void swipeHorizontally(AndroidDriver driver, Directions direction) {
+        int startX = driver.manage().window().getSize().getWidth() / 2;
+        int startY = driver.manage().window().getSize().getHeight() / 2;
+
+        int endX;
+
+        switch (direction) {
+            case LEFT -> endX = (int) (driver.manage().window().getSize().getWidth() * 0.2);
+            case RIGHT -> endX = (int) (driver.manage().window().getSize().getWidth() * 0.8);
+            default -> throw new IllegalArgumentException("Invalid direction selected: " + direction);
+        }
+
+        Sequence swipe = new Sequence(FINGER, 0);
+
+        swipe.addAction(FINGER.createPointerMove(ZERO, viewport(), startX, startY));
+        swipe.addAction(FINGER.createPointerDown(LEFT.asArg()));
+        swipe.addAction(FINGER.createPointerMove(ofMillis(1000), viewport(), endX, startY));
+        swipe.addAction(FINGER.createPointerUp(LEFT.asArg()));
+        driver.perform(List.of(swipe));
+    }
+
     public void swipeVertically(AndroidDriver driver, Directions direction, int numberOfScrolls) {
         for (int i = 0; i <= numberOfScrolls; i++) {
             swipeVertically(driver, direction);
+        }
+    }
+
+    public void swipeHorizontally(AndroidDriver driver, Directions direction, int numberOfScrolls) {
+        for (int i = 0; i <= numberOfScrolls; i++) {
+            swipeHorizontally(driver, direction);
         }
     }
 }

@@ -9,7 +9,7 @@ import pages.SearchResultsPage;
 public class FavoritingTest extends DriverSetup {
 
     @Test(testName = "Favoriting test")
-    public void calendarTest() {
+    public void bookingTest1() {
 
         Assert.assertTrue(cookiePage.cookiePageLoaded(), "Cookie page is not loaded");                                                          //1. Start the Booking application and continue without sign in.
         cookiePage.clickAcceptCookieButton();
@@ -102,3 +102,5 @@ public class FavoritingTest extends DriverSetup {
 
     }
 }
+
+

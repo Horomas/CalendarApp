@@ -17,6 +17,11 @@ public class SignInPage {
     private RemoteWebElement signInButton;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Settings']")
     private RemoteWebElement settingsButton;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Genius loyalty program']")
+    private RemoteWebElement geniusLoyaltyButton;
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc='Saved']")
+    private RemoteWebElement savedButton;
 
 
     public SignInPage(AndroidDriver driver) {
@@ -31,9 +36,21 @@ public class SignInPage {
     public boolean signSettingsButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(settingsButton)).isDisplayed();
     }
+    public boolean savedButtonLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(savedButton)).isDisplayed();
+    }
+    public boolean geniusLoyaltyButtonLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(geniusLoyaltyButton)).isDisplayed();
+    }
     public void clickSettingsButton() {
         settingsButton.click();
     }
+    public void clickGeniusLoyaltyButton() {
+        geniusLoyaltyButton.click();
+    }
 
+    public void clickSavedButton() {
+        savedButton.click();
+    }
 }
 
