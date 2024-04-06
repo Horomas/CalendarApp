@@ -18,8 +18,6 @@ public class SearchResultsPage {
     @AndroidFindBy(xpath = "//android.view.View[@resource-id='sr_list']/android.view.View[2]/android.widget.TextView[1]")
     private RemoteWebElement nameOfFirstFavourite;
 
-    @AndroidFindBy(accessibility = "Navigate up")
-    private RemoteWebElement backToSearch;
 
 
     public SearchResultsPage(AndroidDriver driver) {
@@ -36,15 +34,10 @@ public class SearchResultsPage {
     }
 
 
-    public boolean backToSearchLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(backToSearch)).isDisplayed();
-    }
+
 
     public String textFromFirstFavourite() {
         return nameOfFirstFavourite.getText();
-    }
-    public void clickBackToSearchButton() {
-        backToSearch.click();
     }
 
     public void clickFavouriteFirstButton() {

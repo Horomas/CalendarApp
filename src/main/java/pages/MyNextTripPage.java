@@ -18,8 +18,6 @@ public class MyNextTripPage {
     @AndroidFindBy(accessibility = "Remove property from list")
     private RemoteWebElement removeFavourite;
 
-    @AndroidFindBy(accessibility = "Navigate up")
-    private RemoteWebElement backToSaved;
 
     //    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[5]/android.widget.TextView[1]")
     //    private RemoteWebElement nameOfFirstFavourite;
@@ -38,16 +36,11 @@ public class MyNextTripPage {
     public boolean removeAPropertyLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(removeFavourite)).isDisplayed();
     }
-    public boolean backToSavedLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(backToSaved)).isDisplayed();
-    }
+
     public boolean nameOfFirstFavouriteLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(nameOfFirstFavourite)).isDisplayed();
     }
 
-    public void clickBackToSavedButton() {
-        backToSaved.click();
-    }
     public void clickRemoveFavouriteButton() {
         removeFavourite.click();
     }

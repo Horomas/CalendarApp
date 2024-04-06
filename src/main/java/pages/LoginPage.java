@@ -11,22 +11,22 @@ import util.GlobalVariables;
 
 public class LoginPage {
     protected AndroidDriver driver;
-
-    @AndroidFindBy(accessibility = "Navigate up")
-    private RemoteWebElement loginSkipButton;
-
-
-    public LoginPage(AndroidDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-    }
-
-    public boolean loginPageLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(loginSkipButton)).isDisplayed();
-    }
-
-
-    public void clickLoginSkipButton() {
-        loginSkipButton.click();
-    }
+//
+//    @AndroidFindBy(accessibility = "Navigate up")
+//    private RemoteWebElement loginSkipButton;
+//
+//
+//    public LoginPage(AndroidDriver driver) {
+//        this.driver = driver;
+//        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+//    }
+//
+//    public boolean loginPageLoaded() {
+//        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(loginSkipButton)).isDisplayed();
+//    }
+//
+//
+//    public void clickLoginSkipButton() {
+//        loginSkipButton.click();
+//    }
 }

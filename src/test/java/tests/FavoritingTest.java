@@ -35,8 +35,8 @@ public class FavoritingTest extends DriverSetup {
 //            // Optionally, rethrow the exception or perform other actions
 //        }
 
-        Assert.assertTrue(loginPage.loginPageLoaded(), "Login skip page is not loaded");
-        loginPage.clickLoginSkipButton();
+        Assert.assertTrue(basePage.backButtonLoaded(), "Login skip button is not loaded");
+        basePage.clickBackButton();
 
         Assert.assertTrue(tripInformationEntryPage.tripInformationEntryPageLoaded(), "Trip information entry page is not loaded");
 
@@ -68,21 +68,21 @@ public class FavoritingTest extends DriverSetup {
         Assert.assertTrue(searchResultsPage.favouritesFirstResultLoaded(), "Favourite first search result is not loaded");                          //7. Click on Save button (heart) on one of the listed properties.
         searchResultsPage.clickFavouriteFirstButton();
         String firstFavouriteText = searchResultsPage.textFromFirstFavourite();
-        Assert.assertTrue(searchResultsPage.backToSearchLoaded(), "Back to search is not loaded");                                                  //8. Go back to the search page.
-        searchResultsPage.clickBackToSearchButton();
-        Assert.assertTrue(tripInformationEntryPage.savedIsLoaded(), "Favourites list access is not loaded");                                        //9. Click on Saved tab.
-        tripInformationEntryPage.clickSavedButton();
+        Assert.assertTrue(basePage.backButtonLoaded(), "Back to search is not loaded");                                                  //8. Go back to the search page.
+        basePage.clickBackButton();
+        Assert.assertTrue(basePage.savedSectionButtonLoaded(), "Favourites list access is not loaded");                                        //9. Click on Saved tab.
+        basePage.clickSavedSectionButton();
         Assert.assertTrue(savedPage.savedPageLoaded(), "Saved list access is loaded");
         savedPage.clickFavouritesListButton();
         Assert.assertTrue(myNextTripPage.nameOfFirstFavouriteLoaded(), "Favourites list is not loaded");                                            //10. Validate property is shown in Saved tab.
         String firstFavouriteText1 = myNextTripPage.textFromFirstFavourite();
         Assert.assertEquals(firstFavouriteText1, firstFavouriteText);
-        Assert.assertTrue(myNextTripPage.backToSavedLoaded(), "Back to saved is not loaded");                                                       //11. Go back to the search page.
-        myNextTripPage.clickBackToSavedButton();
+        Assert.assertTrue(basePage.backButtonLoaded(), "Back to saved is not loaded");                                                       //11. Go back to the search page.
+        basePage.clickBackButton();
         Assert.assertTrue(savedPage.backToSearchLoaded(), "Back to search is not loaded");
         savedPage.clickBackToSearchButton();
-        Assert.assertTrue(tripInformationEntryPage.signInSectionButtonLoaded(), "Sign in section button is not loaded");                            //12. Click on Sign in tab and validate that user is not logged in.
-        tripInformationEntryPage.clickSignInSectionButton();
+        Assert.assertTrue(basePage.signInSectionButtonLoaded(), "Sign in section button is not loaded");                            //12. Click on Sign in tab and validate that user is not logged in.
+        basePage.clickSignInSectionButton();
         Assert.assertTrue(signInPage.signInButtonLoaded(), "Sign in action is not available");                                                      //13. Click on Sign in tab and validate that user is not logged in.
         helpers.swipeVertically(driver, Helpers.Directions.UP);
         Assert.assertTrue(signInPage.signSettingsButtonLoaded(), "Settings button is not loaded");                                                  //14. Scroll down to and click Settings.

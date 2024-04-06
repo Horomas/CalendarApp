@@ -36,6 +36,7 @@ public class DriverSetup extends ConfigReader {
     protected PrivacyPolicyPage privacyPolicyPage;
     protected GeniusLoyaltyPage geniusLoyaltyPage;
     protected AboutGeniusPage aboutGeniusPage;
+    protected BasePage basePage;
 
     @BeforeMethod
     public void setUp() {
@@ -63,7 +64,7 @@ public class DriverSetup extends ConfigReader {
 
         cookiePage = new CookiePage(driver);
         acceptNotificationsPage = new AcceptNotificationsPage(driver);
-        loginPage = new LoginPage(driver);
+//        loginPage = new LoginPage(driver);
         tripInformationEntryPage = new TripInformationEntryPage(driver);
         searchResultsPage = new SearchResultsPage(driver);
         savedPage = new SavedPage(driver);
@@ -74,5 +75,6 @@ public class DriverSetup extends ConfigReader {
         privacyPolicyPage = new PrivacyPolicyPage(driver);
         geniusLoyaltyPage = new GeniusLoyaltyPage(driver);
         aboutGeniusPage = new AboutGeniusPage(driver);
+        basePage = new BasePage(driver);
     }
 }

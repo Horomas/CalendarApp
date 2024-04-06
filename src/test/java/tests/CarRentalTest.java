@@ -32,23 +32,51 @@ public class CarRentalTest extends DriverSetup {
 //            System.out.println("Assertion failed: " + e.getMessage());
 //            // Optionally, rethrow the exception or perform other actions
 //        }
-        Assert.assertTrue(loginPage.loginPageLoaded(), "Login skip page is not loaded");
-        loginPage.clickLoginSkipButton();
-        Assert.assertTrue(tripInformationEntryPage.signInSectionButtonLoaded(), "Sign in section button is not loaded");                            //2. Navigate to Sign in tab.
-        tripInformationEntryPage.clickSignInSectionButton();
-        Assert.assertTrue(signInPage.geniusLoyaltyButtonLoaded(), "Genius loyalty section button is not loaded");                                   //3. Click on Genius loyalty program.
-        signInPage.clickGeniusLoyaltyButton();
-        Assert.assertTrue(geniusLoyaltyPage.aboutGeniusContentLoaded(), "Genius loyalty section button is not loaded");
-        helpers.swipeVertically(driver, Helpers.Directions.UP,3);                                                                              //4. Scroll down to About Genius Levels and click on it.
-        geniusLoyaltyPage.clickAboutGenius();
-        helpers.swipeHorizontally(driver, Helpers.Directions.LEFT, 3);                                                                         //5. Swipe right to Genius Level 3 and validate that it is displayed.
-        Assert.assertTrue(aboutGeniusPage.aboutGeniusContentLoaded(), "About Genius Level 3 is not loaded");
-        Assert.assertTrue(aboutGeniusPage.gotItButtonLoaded(), "Got ot button is not loaded");
-        aboutGeniusPage.clickGotItButton();                                                                                                                  //6. Click on Got it button.
-        Assert.assertTrue(searchResultsPage.backToSearchLoaded(), "Back to search is not loaded");                                                  //7. Click on back button.
-        searchResultsPage.clickBackToSearchButton();
-        Assert.assertTrue(signInPage.savedButtonLoaded(), "Saved button is not loaded");                                                            //8. Navigate to Search tab.
-        signInPage.clickSavedButton();
+        Assert.assertTrue(basePage.backButtonLoaded(), "Login skip button is not loaded");
+        basePage.clickBackButton();
+        Assert.assertTrue(basePage.signInSectionButtonLoaded(), "Sign in section button is not loaded");                            //2. Navigate to Sign in tab.
+//        tripInformationEntryPage.clickSignInSectionButton();
+//        Assert.assertTrue(signInPage.geniusLoyaltyButtonLoaded(), "Genius loyalty section button is not loaded");                                   //3. Click on Genius loyalty program.
+//        signInPage.clickGeniusLoyaltyButton();
+//        Assert.assertTrue(geniusLoyaltyPage.aboutGeniusContentLoaded(), "Genius loyalty section button is not loaded");
+//        helpers.swipeVertically(driver, Helpers.Directions.UP,3);                                                                              //4. Scroll down to About Genius Levels and click on it.
+//        geniusLoyaltyPage.clickAboutGenius();
+//        helpers.swipeHorizontally(driver, Helpers.Directions.LEFT, 3);                                                                         //5. Swipe right to Genius Level 3 and validate that it is displayed.
+//        Assert.assertTrue(aboutGeniusPage.aboutGeniusContentLoaded(), "About Genius Level 3 is not loaded");
+//        Assert.assertTrue(aboutGeniusPage.gotItButtonLoaded(), "Got ot button is not loaded");
+//        aboutGeniusPage.clickGotItButton();                                                                                                                  //6. Click on Got it button.
+//        Assert.assertTrue(basePage.backButtonLoaded(), "Back to search is not loaded");                                                             //7. Click on back button.
+//        basePage.clickBackButton();
+//        Assert.assertTrue(basePage.searchSectionButtonLoaded(), "Saved button is not loaded");                                                            //8. Navigate to Search tab.
+//        basePage.clickSearchSectionButton();
+//        Assert.assertTrue(tripInformationEntryPage.carRentalButtonLoaded(), "Car rental button is not loaded");                                     //9. Click on Car rental.
+        tripInformationEntryPage.clickCarRentalButton();
+        Assert.assertTrue(tripInformationEntryPage.carRentalButtonLoaded(), "Car rental return switch is not loaded");                              //10. Disable Return to same location button and validate that now pickup location and drop-off location are displayed.
+        tripInformationEntryPage.clickReturnSameLocationSwitch();
+        Assert.assertTrue(tripInformationEntryPage.pickupLocationFieldLoaded(), "Pick up location field is not loaded");
+        Assert.assertTrue(tripInformationEntryPage.dropoffLocationFieldLoaded(), "Pick up location field is not loaded");
+        tripInformationEntryPage.clickPickupLocationField();
+        tripInformationEntryPage.enterPickupLocation("Skopje");                                                                                      //11. Add Skopje as Pickup location and Ohrid as Drop-off location
+        Assert.assertTrue(tripInformationEntryPage.choosePickupContentLoaded(),"Pick up location is not loaded");
+        tripInformationEntryPage.clickChoosePickupContent();
+        tripInformationEntryPage.clickDropoffLocationField();
+        tripInformationEntryPage.enterDropoffLocation("Ohrid");
+        Assert.assertTrue(tripInformationEntryPage.chooseDropoffContentLoaded(),"Drop-off location is not loaded");
+        tripInformationEntryPage.clickDropoffPickupContent();
+        Assert.assertTrue(tripInformationEntryPage.chooseCarPickupDateLoaded(),"Car pickup date is not loaded");                                       //12. Select 24 April to 27 April 2024 as dates.
+        tripInformationEntryPage.clickChoosePickupDateField();
+        tripInformationEntryPage.clickEnterDatePickup();
+        tripInformationEntryPage.clickEnterDateDropoff();
+        tripInformationEntryPage.clickConfirmChosenDates();
+        Assert.assertTrue(tripInformationEntryPage.choosePickupTimeFieldLoaded(),"Car pickup time is not loaded");                                     //13. Select 08:15 AM as Pickup time and 11:00 AM as Drop-off time.
+        tripInformationEntryPage.clickChoosePickupTimeField();
+        helpers.swipeVertically(driver, Helpers.Directions.DOWN,1);
+        Assert.assertTrue(tripInformationEntryPage.choosePickupTimeLoaded(),"Car pickup time allocation is not loaded");
+        tripInformationEntryPage.clickChoosePickupTime();
+        Assert.assertTrue(tripInformationEntryPage.chooseDropoffTimeFieldLoaded(),"Car dropoff time is not loaded");
+        tripInformationEntryPage.clickChooseDropoffTimeField();
+        Assert.assertTrue(tripInformationEntryPage.chooseDropoffTimeLoaded(),"Car dropoff time allocation is not loaded");
+        tripInformationEntryPage.clickChooseDropoffTime();
 
     }
 

@@ -38,6 +38,19 @@ public class TripInformationEntryPage {
 
     @AndroidFindBy(accessibility = "28 April 2024")
     private RemoteWebElement enterDateEnd;
+    @AndroidFindBy(accessibility = "24 April 2024")
+    private RemoteWebElement enterDatePickup;
+
+    @AndroidFindBy(accessibility = "27 April 2024")
+    private RemoteWebElement enterDateDropoff;
+    @AndroidFindBy(id = "com.booking:id/calendar_confirm")
+    private RemoteWebElement confirmChosenDates;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='8:15 AM']")
+    private RemoteWebElement choosePickupTime;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='11:00 AM']")
+    private RemoteWebElement chooseDropoffTime;
+
 
     @AndroidFindBy(id = "com.booking:id/facet_date_picker_confirm")
     private RemoteWebElement selectDatesButton;
@@ -60,12 +73,30 @@ public class TripInformationEntryPage {
     private RemoteWebElement searchDataDestination;
     @AndroidFindBy(id = "com.booking:id/searchbox_dates")
     private RemoteWebElement searchDataDate;
-    @AndroidFindBy(accessibility = "Saved")
-    private RemoteWebElement savedItems;
 
-    @AndroidFindBy(accessibility = "Sign in")
-    private RemoteWebElement signInSection;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.booking:id/facet_entry_point_item_label' and @text='Car rental']")
+    private RemoteWebElement carRentalButton;
+    @AndroidFindBy(accessibility = "Selected, you will return the car to the same location")
+    private RemoteWebElement returnSameLocationSwitch;
+    @AndroidFindBy(accessibility = "Enter a pick-up location")
+    private RemoteWebElement pickupLocationField;
+    @AndroidFindBy(accessibility = "Enter a drop-off location")
+    private RemoteWebElement dropoffLocationField;
 
+    @AndroidFindBy(id = "com.booking:id/search_query_edittext")
+    private RemoteWebElement enterDestionation;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.booking:id/ape_rc_view_location_name' and @text='Skopje']")
+    private RemoteWebElement choosingPickupContent;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.booking:id/ape_rc_view_location_name' and @text='Ohrid']")
+    private RemoteWebElement choosingDropoffContent;
+    @AndroidFindBy(accessibility = "Pick-up date: 2024-04-08")
+    private RemoteWebElement choosePickupDateField;
+    @AndroidFindBy(accessibility = "Drop-off date: 2024-04-11")
+    private RemoteWebElement chooseDropoffDateField;
+    @AndroidFindBy(accessibility = "Pick-up time: 10:00:00.000")
+    private RemoteWebElement choosePickupTimeField;
+    @AndroidFindBy(accessibility = "Drop-off time: 10:00:00.000")
+    private RemoteWebElement chooseDropoffTimeField;
 
 
 
@@ -126,13 +157,77 @@ public class TripInformationEntryPage {
     public boolean searchDestinationLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(searchDataDate)).isDisplayed();
     }
-    public boolean savedIsLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(savedItems)).isDisplayed();
+
+    public boolean carRentalButtonLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(carRentalButton)).isDisplayed();
     }
-    public boolean signInSectionButtonLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(signInSection)).isDisplayed();
+    public boolean returnSameLocationSwitchLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(returnSameLocationSwitch)).isDisplayed();
+    }
+    public boolean pickupLocationFieldLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(pickupLocationField)).isDisplayed();
+    }
+    public boolean dropoffLocationFieldLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(dropoffLocationField)).isDisplayed();
+    }
+    public boolean enterDestinationLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDestionation)).isDisplayed();
+    }
+    public boolean choosePickupContentLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosingPickupContent)).isDisplayed();
+    }
+    public boolean chooseDropoffContentLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosingDropoffContent)).isDisplayed();
+    }
+    public boolean chooseCarPickupDateLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosePickupDateField)).isDisplayed();
+    }
+    public boolean choosePickupTimeFieldLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosePickupTimeField)).isDisplayed();
+    }
+    public boolean chooseDropoffTimeFieldLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(chooseDropoffTimeField)).isDisplayed();
     }
 
+    public boolean enterDatePickupLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDatePickup)).isDisplayed();
+    }
+    public boolean enterDateDropoffLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDateDropoff)).isDisplayed();
+    }
+    public boolean choosePickupTimeLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosePickupTime)).isDisplayed();
+    }
+    public boolean chooseDropoffTimeLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(chooseDropoffTime)).isDisplayed();
+    }
+    public boolean confirmChosenDatesLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(confirmChosenDates)).isDisplayed();
+    }
+
+
+
+    public void enterDestination(String destination) {
+        destinationFieldPopup.clear();
+        destinationFieldPopup.sendKeys(destination);
+    }
+    public void enterPickupLocation(String destination) {
+        enterDestionation.clear();
+        enterDestionation.sendKeys(destination);
+    }
+    public void enterDropoffLocation(String destination) {
+        enterDestionation.clear();
+        enterDestionation.sendKeys(destination);
+    }
+
+    public boolean getTripDataDate(String date) {
+        String text = searchDataDate.getText();
+        return text.equals(date);
+    }
+    public boolean getTripDataDestination(String destination) {
+        String text = searchDataDestination.getText();
+        return text.equals(destination);
+    }
     public void clickTripDatesButton() {
         tripDatesPopup.click();
     }
@@ -143,20 +238,6 @@ public class TripInformationEntryPage {
 
     public void clickFirst() {
         selectFirst.click();
-    }
-
-    public void enterDestination(String destination) {
-        destinationFieldPopup.clear();
-        destinationFieldPopup.sendKeys(destination);
-    }
-
-    public boolean getTripDataDate(String date) {
-        String text = searchDataDate.getText();
-        return text.equals(date);
-    }
-    public boolean getTripDataDestination(String destination) {
-        String text = searchDataDestination.getText();
-        return text.equals(destination);
     }
 
     public void clickStartDate() {
@@ -192,11 +273,48 @@ public class TripInformationEntryPage {
         searchForTrip.click();
     }
 
-    public void clickSavedButton() {
-        savedItems.click();
+
+    public void clickCarRentalButton() {
+        carRentalButton.click();
     }
-    public void clickSignInSectionButton() {
-        signInSection.click();
+    public void clickReturnSameLocationSwitch() {
+        returnSameLocationSwitch.click();
+    }
+    public void clickPickupLocationField() {
+        pickupLocationField.click();
+    }
+    public void clickDropoffLocationField() {
+        dropoffLocationField.click();
+    }
+    public void clickChoosePickupContent() {
+        choosingPickupContent.click();
+    }
+    public void clickDropoffPickupContent() {
+        choosingDropoffContent.click();
+    }
+    public void clickChoosePickupDateField() {
+        choosePickupDateField.click();
+    }
+    public void clickChoosePickupTimeField() {
+        choosePickupTimeField.click();
+    }
+    public void clickChooseDropoffTimeField() {
+        chooseDropoffTimeField.click();
+    }
+    public void clickEnterDatePickup() {
+        enterDatePickup.click();
+    }
+    public void clickEnterDateDropoff() {
+        enterDateDropoff.click();
+    }
+    public void clickChoosePickupTime() {
+        choosePickupTime.click();
+    }
+    public void clickChooseDropoffTime() {
+        chooseDropoffTime.click();
+    }
+    public void clickConfirmChosenDates() {
+        confirmChosenDates.click();
     }
 
 
