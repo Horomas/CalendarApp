@@ -3,6 +3,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -20,9 +21,6 @@ public class TripInformationEntryPage {
 
     @AndroidFindBy(id = "com.booking:id/facet_with_bui_free_search_booking_header_toolbar_content")
     private RemoteWebElement destinationFieldPopup;
-
-    @AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc, 'Staying from')]")
-    private RemoteWebElement tripDatesPopup;
 
 
     @FindAll({
@@ -108,230 +106,259 @@ public class TripInformationEntryPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    @Step("Trip information entry field is loaded")
     public boolean tripInformationEntryPageLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDestinationField)).isDisplayed();
     }
 
-    public boolean tripDatesPopupButtonLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(tripDatesPopup)).isDisplayed();
-    }
 
+    @Step("First option from search is available")
     public boolean selectFirstOptionAvailable() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(selectFirst)).isDisplayed();
     }
 
+    @Step("Start date is loaded")
     public boolean selectDateStartLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDateStart)).isDisplayed();
     }
+    @Step("End date is loaded")
     public boolean selectDateEndLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDateEnd)).isDisplayed();
     }
+    @Step("Confirm dates button is loaded")
     public boolean selectDateButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(selectDatesButton)).isDisplayed();
     }
 
+    @Step("Enter destination popup field is loaded")
     public boolean enterDestination() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(destinationFieldPopup)).isDisplayed();
     }
 
+    @Step("Trip detail change field is loaded")
     public boolean roomSelectionLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(chooseRooms)).isDisplayed();
     }
+    @Step("Increase rooms button is loaded")
     public boolean increaseRoomsLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(increaseRooms)).isDisplayed();
     }
+    @Step("Increase adults button is loaded")
     public boolean increaseAdultsLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(increaseAdults)).isDisplayed();
     }
-    public boolean increaseChildrenLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(increaseChildren)).isDisplayed();
-    }
+
+    @Step("Apply changes to trip details button is loaded")
     public boolean applyButtonToTripInformation() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(applyChangesToTripInformation)).isDisplayed();
     }
+    @Step("Show search results button are loaded")
     public boolean searchForTripLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(searchForTrip)).isDisplayed();
     }
 
+    @Step("Search data loaded")
     public boolean searchDateLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(searchDataDestination)).isDisplayed();
     }
 
+    @Step("Search results for trips is loaded")
     public boolean searchDestinationLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(searchDataDate)).isDisplayed();
     }
-
+    @Step("Car rental link is loaded")
     public boolean carRentalButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(carRentalButton)).isDisplayed();
     }
+    @Step("Return same location switch is loaded")
     public boolean returnSameLocationSwitchLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(returnSameLocationSwitch)).isDisplayed();
     }
+    @Step("Pick up location field is loaded")
     public boolean pickupLocationFieldLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(pickupLocationField)).isDisplayed();
     }
+    @Step("Drop off location field is loaded")
     public boolean dropoffLocationFieldLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(dropoffLocationField)).isDisplayed();
     }
-    public boolean enterDestinationLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDestionation)).isDisplayed();
-    }
+    @Step("Search results for pickup location loaded")
     public boolean choosePickupContentLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosingPickupContent)).isDisplayed();
     }
+    @Step("Search results for dropoff location loaded")
     public boolean chooseDropoffContentLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosingDropoffContent)).isDisplayed();
     }
+    @Step("Choose car pickup date is loaded")
     public boolean chooseCarPickupDateLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosePickupDateField)).isDisplayed();
     }
+    @Step("Choose pick up time is loaded")
     public boolean choosePickupTimeFieldLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosePickupTimeField)).isDisplayed();
     }
+    @Step("Choose dropoff time field is loaded")
     public boolean chooseDropoffTimeFieldLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(chooseDropoffTimeField)).isDisplayed();
     }
 
-    public boolean enterDatePickupLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDatePickup)).isDisplayed();
-    }
-    public boolean enterDateDropoffLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(enterDateDropoff)).isDisplayed();
-    }
+    @Step("Pick up time button is loaded")
     public boolean choosePickupTimeLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(choosePickupTime)).isDisplayed();
     }
+    @Step("Choose dropoff time is loaded")
     public boolean chooseDropoffTimeLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(chooseDropoffTime)).isDisplayed();
     }
-    public boolean confirmChosenDatesLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(confirmChosenDates)).isDisplayed();
-    }
+
+    @Step("Drivers age entry field is loaded")
     public boolean driversAgeFieldLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(driversAgeField)).isDisplayed();
     }
+    @Step("Search button for cars is loaded")
     public boolean searchButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(searchButton)).isDisplayed();
     }
 
 
 
+    @Step("Enter destination")
     public void enterDestination(String destination) {
         destinationFieldPopup.clear();
         destinationFieldPopup.sendKeys(destination);
     }
+    @Step("Enter pickup location")
     public void enterPickupLocation(String destination) {
         enterDestionation.clear();
         enterDestionation.sendKeys(destination);
     }
+    @Step("Enter dropoff location")
     public void enterDropoffLocation(String destination) {
         enterDestionation.clear();
         enterDestionation.sendKeys(destination);
     }
-
+    @Step("Confirm search results dates")
     public boolean getTripDataDate(String date) {
         String text = searchDataDate.getText();
         return text.equals(date);
     }
+    @Step("Confirm search results is for Skopje")
     public boolean getTripDataDestination(String destination) {
         String text = searchDataDestination.getText();
         return text.equals(destination);
     }
-    public void enterDriversAge(String age) {
-        driversAgeField.clear();
-        driversAgeField.sendKeys(age);
-    }
-    public void clickTripDatesButton() {
-        tripDatesPopup.click();
-    }
 
+
+    @Step("Click destination field button")
     public void clickDestinationField() {
         enterDestinationField.click();
     }
 
+    @Step("Click on first option")
     public void clickFirst() {
         selectFirst.click();
     }
 
+    @Step("Click on start date")
     public void clickStartDate() {
         enterDateStart.click();
     }
-
+    @Step("Click on start date")
     public void clickEndDate() {
         enterDateEnd.click();
     }
 
+    @Step("Click confirm selected dates")
     public void clickSelectDatesButton() {
         selectDatesButton.click();
     }
 
+    @Step("Click trip details change field")
     public void clickRoomSelection() {
         chooseRooms.click();
     }
+    @Step("Click increase rooms")
     public void clickRoomIncreaseButton() {
         increaseRooms.click();
     }
+    @Step("Click increase adult count")
     public void clickAdultIncreaseButton() {
         increaseAdults.click();
     }
-    public void clickChildrenIncreaseButton() {
-        increaseChildren.click();
-    }
 
+    @Step("Click apply trip changes button")
     public void clickApplyChangesToTrip() {
         applyChangesToTripInformation.click();
     }
 
+
+    @Step("Click search for trip button")
     public void clickSearchForTripButton() {
         searchForTrip.click();
     }
 
-
+    @Step("Click rental car button")
     public void clickCarRentalButton() {
         carRentalButton.click();
     }
+    @Step("Click return same location switch")
     public void clickReturnSameLocationSwitch() {
         returnSameLocationSwitch.click();
     }
+    @Step("Click pick up location field")
     public void clickPickupLocationField() {
         pickupLocationField.click();
     }
+    @Step("Click dropoff location field")
     public void clickDropoffLocationField() {
         dropoffLocationField.click();
     }
+    @Step("Click choose pick up location from search")
     public void clickChoosePickupContent() {
         choosingPickupContent.click();
     }
+    @Step("Click choose drop off location from search")
     public void clickDropoffPickupContent() {
         choosingDropoffContent.click();
     }
+    @Step("Click choose pick up date")
     public void clickChoosePickupDateField() {
         choosePickupDateField.click();
     }
+    @Step("Click choose pickup time")
     public void clickChoosePickupTimeField() {
         choosePickupTimeField.click();
     }
+    @Step("Click choose dropoff time")
     public void clickChooseDropoffTimeField() {
         chooseDropoffTimeField.click();
     }
+    @Step("Enter the pickup date")
     public void clickEnterDatePickup() {
         enterDatePickup.click();
     }
+    @Step("Enter the dropoff date")
     public void clickEnterDateDropoff() {
         enterDateDropoff.click();
     }
+    @Step("Click chosen pick up time")
     public void clickChoosePickupTime() {
         choosePickupTime.click();
     }
+    @Step("Click chosen drop off time")
     public void clickChooseDropoffTime() {
         chooseDropoffTime.click();
     }
+    @Step("Click chosen date confirm button")
     public void clickConfirmChosenDates() {
         confirmChosenDates.click();
     }
+    @Step("Click car search button")
     public void clickSearchButton() {
         searchButton.click();
     }
+    @Step("Click drivers age field")
     public void clickDriversAgeField() {
         driversAgeField.click();
     }

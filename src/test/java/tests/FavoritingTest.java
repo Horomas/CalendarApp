@@ -1,4 +1,5 @@
 package tests;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.TripInformationEntryPage;
@@ -6,8 +7,13 @@ import util.DriverSetup;
 import util.Helpers;
 import pages.SearchResultsPage;
 
+@Epic("Regression Tests")
+@Feature("CarRentalTest")
 public class FavoritingTest extends DriverSetup {
 
+
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Verify that the location can be favoriting and that the currency is changed")
     @Test(testName = "Favoriting test")
     public void bookingTest1() {
 
@@ -39,7 +45,6 @@ public class FavoritingTest extends DriverSetup {
         basePage.clickBackButton();
 
         Assert.assertTrue(tripInformationEntryPage.tripInformationEntryPageLoaded(), "Trip information entry page is not loaded");
-
         tripInformationEntryPage.clickDestinationField();
         Assert.assertTrue(tripInformationEntryPage.enterDestination(), "Trip information entry field is not loaded");
         tripInformationEntryPage.enterDestination("Skopje");                                                                                             //2. Select Skopje as destination.
@@ -63,7 +68,6 @@ public class FavoritingTest extends DriverSetup {
         tripInformationEntryPage.clickSearchForTripButton();
         Assert.assertTrue(tripInformationEntryPage.searchDestinationLoaded(), "Search trip destination was not loaded");                        //6. On booking search screen validate expected destination and date is visible.
         Assert.assertTrue(tripInformationEntryPage.getTripDataDestination("Skopje"), "Text does not equal 'Skopje'");
-        Assert.assertTrue(tripInformationEntryPage.searchDateLoaded(), "Search trip destination was not loaded");
         Assert.assertTrue(tripInformationEntryPage.getTripDataDate("Apr 24 - Apr 28"), "Text does not equal 'Apr 24 - Apr 28'");
         Assert.assertTrue(searchResultsPage.favouritesFirstResultLoaded(), "Favourite first search result is not loaded");                          //7. Click on Save button (heart) on one of the listed properties.
         searchResultsPage.clickFavouriteFirstButton();
@@ -79,8 +83,8 @@ public class FavoritingTest extends DriverSetup {
         Assert.assertEquals(firstFavouriteText1, firstFavouriteText);
         Assert.assertTrue(basePage.backButtonLoaded(), "Back to saved is not loaded");                                                       //11. Go back to the search page.
         basePage.clickBackButton();
-        Assert.assertTrue(savedPage.backToSearchLoaded(), "Back to search is not loaded");
-        savedPage.clickBackToSearchButton();
+        Assert.assertTrue(basePage.backToSearchLoaded(), "Back to search is not loaded");
+        basePage.clickBackToSearchButton();
         Assert.assertTrue(basePage.signInSectionButtonLoaded(), "Sign in section button is not loaded");                            //12. Click on Sign in tab and validate that user is not logged in.
         basePage.clickSignInSectionButton();
         Assert.assertTrue(signInPage.signInButtonLoaded(), "Sign in action is not available");                                                      //13. Click on Sign in tab and validate that user is not logged in.

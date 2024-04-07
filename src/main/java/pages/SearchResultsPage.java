@@ -4,6 +4,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,6 +30,7 @@ public class SearchResultsPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    @Step("Favourite first search results button is loaded")
     public boolean favouritesFirstResultLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(favouriteFirst)).isDisplayed();
     }
@@ -36,26 +38,25 @@ public class SearchResultsPage {
     public boolean nameOfFirstFavouriteLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(nameOfFirstFavourite)).isDisplayed();
     }
+    @Step("Search car result filter is loaded")
     public boolean filterButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(filterButton)).isDisplayed();
     }
-    public boolean firstCarGearBoxContentLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(firstCarGearBoxContent)).isDisplayed();
-    }
 
-
-
-
+    @Step("Get first favourite search results name")
     public String textFromFirstFavourite() {
         return nameOfFirstFavourite.getText();
     }
+    @Step("First search results cars gearbox content is loaded")
     public String textFirstCarGearbox() {
         return firstCarGearBoxContent.getText();
     }
 
+    @Step("Click favourite first search result")
     public void clickFavouriteFirstButton() {
         favouriteFirst.click();
     }
+    @Step("Click car search filter button")
     public void clickFilterButton() {
         filterButton.click();
     }

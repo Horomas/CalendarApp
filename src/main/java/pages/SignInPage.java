@@ -4,6 +4,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,8 +21,6 @@ public class SignInPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Genius loyalty program']")
     private RemoteWebElement geniusLoyaltyButton;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc='Saved']")
-    private RemoteWebElement savedButton;
 
 
     public SignInPage(AndroidDriver driver) {
@@ -29,28 +28,28 @@ public class SignInPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    @Step("Sign in button is loaded")
     public boolean signInButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(signInButton)).isDisplayed();
     }
 
+    @Step("Settings button loaded")
     public boolean signSettingsButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(settingsButton)).isDisplayed();
     }
-    public boolean savedButtonLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(savedButton)).isDisplayed();
-    }
+
+    @Step("Genius Loyalty button is loaded")
     public boolean geniusLoyaltyButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(geniusLoyaltyButton)).isDisplayed();
     }
+    @Step("Click settings button")
     public void clickSettingsButton() {
         settingsButton.click();
     }
+    @Step("Click Genius Loyalty button")
     public void clickGeniusLoyaltyButton() {
         geniusLoyaltyButton.click();
     }
 
-    public void clickSavedButton() {
-        savedButton.click();
-    }
 }
 

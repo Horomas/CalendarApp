@@ -1,12 +1,17 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import util.DriverSetup;
 import util.Helpers;
 
+@Epic("Regression Tests")
+@Feature("CarRentalTest")
 public class CarRentalTest extends DriverSetup {
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Verify that a car which is selected for pickup and dropoff trip has an automatic gearbox")
     @Test(testName = "Car rental test")
     public void bookingTest2() {
         Assert.assertTrue(cookiePage.cookiePageLoaded(), "Cookie page is not loaded");                                                          //1. Start the Booking application and continue without sign in.
@@ -51,14 +56,14 @@ public class CarRentalTest extends DriverSetup {
         basePage.clickSearchSectionButton();
         Assert.assertTrue(tripInformationEntryPage.carRentalButtonLoaded(), "Car rental button is not loaded");                                     //9. Click on Car rental.
         tripInformationEntryPage.clickCarRentalButton();
-        Assert.assertTrue(tripInformationEntryPage.carRentalButtonLoaded(), "Car rental return switch is not loaded");                              //10. Disable Return to same location button and validate that now pickup location and drop-off location are displayed.
+        Assert.assertTrue(tripInformationEntryPage.returnSameLocationSwitchLoaded(), "Car rental return switch is not loaded");                              //10. Disable Return to same location button and validate that now pickup location and drop-off location are displayed.
         tripInformationEntryPage.clickReturnSameLocationSwitch();
         Assert.assertTrue(tripInformationEntryPage.pickupLocationFieldLoaded(), "Pick up location field is not loaded");
-        Assert.assertTrue(tripInformationEntryPage.dropoffLocationFieldLoaded(), "Pick up location field is not loaded");
         tripInformationEntryPage.clickPickupLocationField();
         tripInformationEntryPage.enterPickupLocation("Skopje");                                                                                      //11. Add Skopje as Pickup location and Ohrid as Drop-off location
         Assert.assertTrue(tripInformationEntryPage.choosePickupContentLoaded(),"Pick up location is not loaded");
         tripInformationEntryPage.clickChoosePickupContent();
+        Assert.assertTrue(tripInformationEntryPage.dropoffLocationFieldLoaded(),"Pick up location is not loaded");
         tripInformationEntryPage.clickDropoffLocationField();
         tripInformationEntryPage.enterDropoffLocation("Ohrid");
         Assert.assertTrue(tripInformationEntryPage.chooseDropoffContentLoaded(),"Drop-off location is not loaded");

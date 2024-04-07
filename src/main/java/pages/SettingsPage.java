@@ -4,6 +4,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,24 +26,30 @@ public class SettingsPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    @Step("Select currency is loaded")
     public boolean currencySelectionLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(currencySelectionButton)).isDisplayed();
     }
+    @Step("Euro is loaded")
     public boolean selectedCurrencyLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(selectedCurrency)).isDisplayed();
     }
+    @Step("Privacy policy field is loaded")
     public boolean privacyPolicyFieldLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(privacyPolicyField)).isDisplayed();
     }
 
+    @Step("Click select currency is loaded")
     public void clickCurrencySelectionButton() {
         currencySelectionButton.click();
     }
+    @Step("Click privacy policy field")
     public void clickPrivacyPolicyField() {
         privacyPolicyField.click();
     }
 
 
+    @Step("Check what currency")
     public String getSelectedCurrency() {
         return selectedCurrency.getText();
     }

@@ -4,6 +4,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -33,18 +34,15 @@ public class MyNextTripPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public boolean removeAPropertyLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(removeFavourite)).isDisplayed();
-    }
 
+
+    @Step("Check first favourite name is loaded")
     public boolean nameOfFirstFavouriteLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(nameOfFirstFavourite)).isDisplayed();
     }
 
-    public void clickRemoveFavouriteButton() {
-        removeFavourite.click();
-    }
 
+    @Step("Get name of first favourite")
     public String textFromFirstFavourite() {
         return nameOfFirstFavourite.getText();
     }

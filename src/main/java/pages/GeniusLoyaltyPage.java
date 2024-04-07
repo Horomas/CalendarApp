@@ -5,6 +5,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,9 +29,11 @@ public class GeniusLoyaltyPage extends Helpers {
     public boolean aboutGeniusLinkLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(aboutGeniusLink)).isDisplayed();
     }
+    @Step("Loaded link to about Genius loyalty")
     public boolean aboutGeniusContentLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(aboutGeniusContent)).isDisplayed();
     }
+    @Step("Click about Genius link")
     public void clickAboutGenius() {
         aboutGeniusLinkLoaded();
         aboutGeniusLink.click();

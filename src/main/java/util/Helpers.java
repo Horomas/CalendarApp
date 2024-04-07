@@ -3,6 +3,7 @@ package util;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -52,6 +53,7 @@ public class Helpers {
         swipe.addAction(FINGER.createPointerUp(LEFT.asArg()));
         driver.perform(List.of(swipe));
     }
+    @Step("Clicking is done by coordinates")
     public void clickByCoordinates(AndroidDriver driver, int x, int y) {
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
         Sequence clickSequence = new Sequence(finger, 0);
@@ -87,12 +89,13 @@ public class Helpers {
         driver.perform(List.of(swipe));
     }
 
+    @Step("Swiping vertically")
     public void swipeVertically(AndroidDriver driver, Directions direction, int numberOfScrolls) {
         for (int i = 0; i <= numberOfScrolls; i++) {
             swipeVertically(driver, direction);
         }
     }
-
+    @Step("Swiping horizontally")
     public void swipeHorizontally(AndroidDriver driver, Directions direction, int numberOfScrolls) {
         for (int i = 0; i <= numberOfScrolls; i++) {
             swipeHorizontally(driver, direction);

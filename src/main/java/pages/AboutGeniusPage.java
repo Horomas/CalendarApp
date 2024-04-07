@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import util.*;
+import io.qameta.allure.Step;
+
 
 public class AboutGeniusPage extends Helpers {
     protected AndroidDriver driver;
@@ -25,15 +27,17 @@ public class AboutGeniusPage extends Helpers {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-
+    @Step("About Genius content is loaded")
     public boolean aboutGeniusContentLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(geniusLevel3Content)).isDisplayed();
     }
 
+    @Step("Read about genius program confirmation button loaded")
     public boolean gotItButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(gotItButton)).isDisplayed();
     }
 
+    @Step("Confirm reading of about genius program")
     public void clickGotItButton() { gotItButton.click();}
 
 }

@@ -1,5 +1,6 @@
 package util;
 
+import org.testng.annotations.Listeners;
 import pages.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -15,6 +16,7 @@ import java.net.URISyntaxException;
 
 import org.openqa.selenium.Platform;
 
+@Listeners({ ITestListenerUtility.class })
 public class DriverSetup extends ConfigReader {
 
     public static AndroidDriver driver;

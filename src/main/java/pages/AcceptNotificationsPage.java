@@ -4,6 +4,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -43,7 +44,7 @@ public class AcceptNotificationsPage {
 //            return false;
 //        }
 //    }
-
+    @Step("Notifications page is loaded")
     public boolean notificationsPageLoaded() {
         try {
             // Attempt to wait for the visibility of the allowNotificationsPopUpButton and check if it is displayed
@@ -60,7 +61,7 @@ public class AcceptNotificationsPage {
             return false;
         }
     }
-
+    @Step("Notifications popup is loaded")
     public boolean notificationsPopupButtonLoaded() {
         try {
             // Attempt to wait for the visibility of the allowNotificationsPopUpButton and check if it is displayed
@@ -77,12 +78,12 @@ public class AcceptNotificationsPage {
             return false;
         }
     }
-
+    @Step("Notifications are accepted")
     public void clickAcceptNotificationsButton() {
             acceptNotificationsButton.click();
     }
 
-
+    @Step("Notifications are accepted")
     public void clickAllowNotificationsPopUpButton() {
             allowNotificationsPopUpButton.click();
     }
