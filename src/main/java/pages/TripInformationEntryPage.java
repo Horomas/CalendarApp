@@ -91,12 +91,15 @@ public class TripInformationEntryPage {
     private RemoteWebElement choosingDropoffContent;
     @AndroidFindBy(accessibility = "Pick-up date: 2024-04-08")
     private RemoteWebElement choosePickupDateField;
-    @AndroidFindBy(accessibility = "Drop-off date: 2024-04-11")
-    private RemoteWebElement chooseDropoffDateField;
     @AndroidFindBy(accessibility = "Pick-up time: 10:00:00.000")
     private RemoteWebElement choosePickupTimeField;
     @AndroidFindBy(accessibility = "Drop-off time: 10:00:00.000")
     private RemoteWebElement chooseDropoffTimeField;
+    @AndroidFindBy(accessibility = "Enter the driver's age")
+    private RemoteWebElement driversAgeField;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Search']")
+    private RemoteWebElement searchButton;
 
 
 
@@ -204,6 +207,12 @@ public class TripInformationEntryPage {
     public boolean confirmChosenDatesLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(confirmChosenDates)).isDisplayed();
     }
+    public boolean driversAgeFieldLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(driversAgeField)).isDisplayed();
+    }
+    public boolean searchButtonLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(searchButton)).isDisplayed();
+    }
 
 
 
@@ -227,6 +236,10 @@ public class TripInformationEntryPage {
     public boolean getTripDataDestination(String destination) {
         String text = searchDataDestination.getText();
         return text.equals(destination);
+    }
+    public void enterDriversAge(String age) {
+        driversAgeField.clear();
+        driversAgeField.sendKeys(age);
     }
     public void clickTripDatesButton() {
         tripDatesPopup.click();
@@ -315,6 +328,12 @@ public class TripInformationEntryPage {
     }
     public void clickConfirmChosenDates() {
         confirmChosenDates.click();
+    }
+    public void clickSearchButton() {
+        searchButton.click();
+    }
+    public void clickDriversAgeField() {
+        driversAgeField.click();
     }
 
 

@@ -17,6 +17,10 @@ public class SearchResultsPage {
     private RemoteWebElement favouriteFirst;
     @AndroidFindBy(xpath = "//android.view.View[@resource-id='sr_list']/android.view.View[2]/android.widget.TextView[1]")
     private RemoteWebElement nameOfFirstFavourite;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Filter']")
+    private RemoteWebElement filterButton;
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[3]/android.widget.TextView")
+    private RemoteWebElement firstCarGearBoxContent;
 
 
 
@@ -32,6 +36,12 @@ public class SearchResultsPage {
     public boolean nameOfFirstFavouriteLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(nameOfFirstFavourite)).isDisplayed();
     }
+    public boolean filterButtonLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(filterButton)).isDisplayed();
+    }
+    public boolean firstCarGearBoxContentLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(firstCarGearBoxContent)).isDisplayed();
+    }
 
 
 
@@ -39,9 +49,15 @@ public class SearchResultsPage {
     public String textFromFirstFavourite() {
         return nameOfFirstFavourite.getText();
     }
+    public String textFirstCarGearbox() {
+        return firstCarGearBoxContent.getText();
+    }
 
     public void clickFavouriteFirstButton() {
         favouriteFirst.click();
+    }
+    public void clickFilterButton() {
+        filterButton.click();
     }
 
 

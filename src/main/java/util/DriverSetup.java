@@ -37,6 +37,7 @@ public class DriverSetup extends ConfigReader {
     protected GeniusLoyaltyPage geniusLoyaltyPage;
     protected AboutGeniusPage aboutGeniusPage;
     protected BasePage basePage;
+    protected FilterPage filterPage;
 
     @BeforeMethod
     public void setUp() {
@@ -76,5 +77,6 @@ public class DriverSetup extends ConfigReader {
         geniusLoyaltyPage = new GeniusLoyaltyPage(driver);
         aboutGeniusPage = new AboutGeniusPage(driver);
         basePage = new BasePage(driver);
+        filterPage = new FilterPage(driver);
     }
 }
