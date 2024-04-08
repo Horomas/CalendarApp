@@ -87,7 +87,7 @@ public class TripInformationEntryPage {
     private RemoteWebElement choosingPickupContent;
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.booking:id/ape_rc_view_location_name' and @text='Ohrid']")
     private RemoteWebElement choosingDropoffContent;
-    @AndroidFindBy(accessibility = "Pick-up date: 2024-04-08")
+    @AndroidFindBy(xpath = "//android.widget.Button[3]")
     private RemoteWebElement choosePickupDateField;
     @AndroidFindBy(accessibility = "Pick-up time: 10:00:00.000")
     private RemoteWebElement choosePickupTimeField;
