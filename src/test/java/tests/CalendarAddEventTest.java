@@ -71,8 +71,10 @@ public class CalendarAddEventTest extends DriverSetup {
         Assert.assertTrue(newEventPage.addButtonLoaded(), "Add button is not loaded");                                                    //10. Click on Add button.
         newEventPage.clickAddButton();
         helpers.clickByCoordinates(driver, 53, 77);                                                                                         //11. Switch to Month view (click back).
-
-
+        Assert.assertTrue(monthPage.selectDateOfInterestLoaded(), "Access button to date of interest in monthly view is not loaded");
+        monthPage.clickSelectDateOfInterest();
+        helpers.clickByCoordinates(driver, 290, 77);
+        Assert.assertTrue(monthPage.checkContentLoaded(), "Event is not visible");                                                          //12. Verify that event is added for April 24 and April 25.
     }
 
 }

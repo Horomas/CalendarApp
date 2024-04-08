@@ -16,32 +16,28 @@ public class MonthPage {
     protected IOSDriver driver;
 
 
-    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`name == 'Continue'`]")
-    private RemoteWebElement acceptWelcomeButton;
+    @iOSXCUITFindBy(accessibility = "Wednesday, 24 April")
+    private RemoteWebElement selectDateOfInterest;
+    @iOSXCUITFindBy(accessibility = "Skopje")
+    private RemoteWebElement checkContent;
 
     public MonthPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @Step("Accept Welcome to calendar button is loaded")
-    public boolean acceptWelcomePageLoaded() {
-        try {
-            return new WebDriverWait(driver, GlobalVariables.globalTimeout)
-                    .until(ExpectedConditions.visibilityOf(acceptWelcomeButton))
-                    .isDisplayed();
-        } catch (TimeoutException e) {
-            System.out.println("The notifications popup button was not found within the timeout period: " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.out.println("The notifications popup button was not found: " + e.getMessage());
-            return false;
-        }
+    @Step("Choose date of interest in monthly view")
+    public boolean selectDateOfInterestLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(selectDateOfInterest)).isDisplayed();
+    }
+    @Step("Check the event exists")
+    public boolean checkContentLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(checkContent)).isDisplayed();
     }
 
-    @Step("Click accept welcome to calendar button")
-    public void clickAcceptanceWelcomePageLoaded() {
-        acceptWelcomeButton.click();
+    @Step("Click date of interest in monthly view")
+    public void clickSelectDateOfInterest() {
+        selectDateOfInterest.click();
     }
 
 }
