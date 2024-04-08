@@ -1,7 +1,7 @@
 package util;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
+
 import io.appium.java_client.ios.IOSDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
@@ -33,7 +33,7 @@ public class Helpers {
 
     private final PointerInput FINGER = new PointerInput(TOUCH, "finger");
 
-    public void swipeVertically(AndroidDriver driver, Directions direction) {
+    public void swipeVertically(IOSDriver driver, Directions direction) {
         int startX = driver.manage().window().getSize().getWidth() / 2;
         int startY = driver.manage().window().getSize().getHeight() / 2;
 
@@ -54,7 +54,7 @@ public class Helpers {
         driver.perform(List.of(swipe));
     }
     @Step("Clicking is done by coordinates")
-    public void clickByCoordinates(AndroidDriver driver, int x, int y) {
+    public void clickByCoordinates(IOSDriver driver, int x, int y) {
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
         Sequence clickSequence = new Sequence(finger, 0);
 
@@ -68,7 +68,7 @@ public class Helpers {
 
 
 
-    public void swipeHorizontally(AndroidDriver driver, Directions direction) {
+    public void swipeHorizontally(IOSDriver driver, Directions direction) {
         int startX = driver.manage().window().getSize().getWidth() / 2;
         int startY = driver.manage().window().getSize().getHeight() / 2;
 
@@ -90,13 +90,13 @@ public class Helpers {
     }
 
     @Step("Swiping vertically")
-    public void swipeVertically(AndroidDriver driver, Directions direction, int numberOfScrolls) {
+    public void swipeVertically(IOSDriver driver, Directions direction, int numberOfScrolls) {
         for (int i = 0; i <= numberOfScrolls; i++) {
             swipeVertically(driver, direction);
         }
     }
     @Step("Swiping horizontally")
-    public void swipeHorizontally(AndroidDriver driver, Directions direction, int numberOfScrolls) {
+    public void swipeHorizontally(IOSDriver driver, Directions direction, int numberOfScrolls) {
         for (int i = 0; i <= numberOfScrolls; i++) {
             swipeHorizontally(driver, direction);
         }
