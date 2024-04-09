@@ -14,14 +14,21 @@ public class CalendarAddEventTest extends DriverSetup {
     @Description("Test Description: Verify that a new event has been added")
     @Test(testName = "Calendar add event")
     public void bookingTest2() {
-//        try {
-//            Assert.assertTrue(popUpStartingPage.acceptWelcomePageLoaded(), "Pop up welcome page is not loaded");                              //2. Initial case handling
-//            popUpStartingPage.clickAcceptanceWelcomePageLoaded();
-//        } catch (AssertionError e) {
-//            System.out.println("Assertion failed: " + e.getMessage());
-//        }
-//        helpers.clickByCoordinates(driver, 200, 637);                                                                                         //Accept location, but does not trigger by running the script
-//        helpers.clickByCoordinates(driver, 296, 551);                                                                                         //Accept notifications, but does not trigger by running the script
+        try {
+            Assert.assertTrue(popUpStartingPage.acceptWelcomePageLoaded(), "Pop up welcome page is not loaded");                              //2. Initial case handling - for reruns should be commented as occurs only once as there is no reinstall
+            popUpStartingPage.clickAcceptanceWelcomePageLoaded();
+        } catch (AssertionError e) {
+            System.out.println("Assertion failed: " + e.getMessage());
+        }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("Thread was interrupted, Failed to complete operation");
+        }
+        helpers.clickByCoordinates(driver, 200, 637);                                                                                         //initial Accept location, but does not trigger by running the script - for reruns should be commented as occurs only once as there is no reinstall
+        helpers.clickByCoordinates(driver, 296, 551);                                                                                         //initial Accept notifications, but does not trigger by running the script - for reruns should be commented as occurs only once as there is no reinstall
+        helpers.clickByCoordinates(driver, 207, 43);                                                                                         //initial Accept notifications (necessary to return to iOS as popups out of bound), but does not trigger by running the script - for reruns should be commented as occurs only once as there is no reinstall
         Assert.assertTrue(startingPage.todayHomePageLoaded(), "Calendar starting page is not loaded");                               //1. Open the Calendar app (already installed on iOS simulators), validate the application is started.
         startingPage.clickTodaySectionButton();
         Assert.assertTrue(startingPage.addButtonLoaded(), "Add button page is not loaded");

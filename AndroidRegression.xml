@@ -5,6 +5,7 @@
     <test verbose="2" name="Android Regression">
         <classes>
             <class name="tests.CalendarAddEventTest"/>
+            <class name="tests.NewCalendarAddTest"/>
         </classes>
     </test>
 </suite>

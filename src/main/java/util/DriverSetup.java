@@ -5,10 +5,7 @@ import io.appium.java_client.ios.options.XCUITestOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeMethod;
 //import pages.*;
 
@@ -17,8 +14,6 @@ import java.net.URI;
 
 import java.net.URISyntaxException;
 import java.time.Duration;
-
-import org.openqa.selenium.Platform;
 
 @Listeners({ ITestListenerUtility.class })
 public class DriverSetup extends ConfigReader {
@@ -31,6 +26,9 @@ public class DriverSetup extends ConfigReader {
     protected PopUpStartingPage popUpStartingPage;
     protected NewEventPage newEventPage;
     protected MonthPage monthPage;
+    protected CalendarPage calendarPage;
+    protected AddCalendarColourPage addCalendarColourPage;
+    protected EditCalendarPage editEventPage;
 
     @BeforeMethod
     public void setUp() {
@@ -54,7 +52,9 @@ public class DriverSetup extends ConfigReader {
         popUpStartingPage = new PopUpStartingPage(driver);
         newEventPage = new NewEventPage(driver);
         monthPage = new MonthPage(driver);
-
+        calendarPage = new CalendarPage(driver);
+        addCalendarColourPage = new AddCalendarColourPage(driver);
+        editEventPage = new EditCalendarPage(driver);
 
     }
     @AfterMethod(alwaysRun = true)

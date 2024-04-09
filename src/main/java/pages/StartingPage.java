@@ -17,7 +17,7 @@ public class StartingPage {
 
     @iOSXCUITFindBy(accessibility = "Today")
     private RemoteWebElement todaySectionButton;
-    @iOSXCUITFindBy(accessibility = "Calendar")
+    @iOSXCUITFindBy(accessibility = "Calendars")
     private RemoteWebElement calendarSectionButton;
     @iOSXCUITFindBy(accessibility = "Add")
     private RemoteWebElement addButton;
@@ -34,10 +34,19 @@ public class StartingPage {
     public boolean addButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(addButton)).isDisplayed();
     }
+    @Step("Calendar section button is loaded")
+    public boolean calendarSectionButtonLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(calendarSectionButton)).isDisplayed();
+    }
 
     @Step("Calendar section button is pressed")
     public void clickTodaySectionButton() {
         todaySectionButton.click();
+    }
+
+    @Step("Calendar section button is pressed")
+    public void clickCalendarSectionButton() {
+        calendarSectionButton.click();
     }
     @Step("Add button is pressed")
     public void clickAddButton() {
