@@ -16,8 +16,10 @@ public class StartingPage {
 
 
     @iOSXCUITFindBy(accessibility = "Today")
+    private RemoteWebElement todaySectionButton;
+    @iOSXCUITFindBy(accessibility = "Calendar")
     private RemoteWebElement calendarSectionButton;
-    @iOSXCUITFindBy(accessibility = "Search")
+    @iOSXCUITFindBy(accessibility = "Add")
     private RemoteWebElement addButton;
 
     public StartingPage(IOSDriver driver) {
@@ -25,8 +27,8 @@ public class StartingPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
     @Step("Calendar section button is loaded")
-    public boolean calendarHomePageLoaded() {
-        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(calendarSectionButton)).isDisplayed();
+    public boolean todayHomePageLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(todaySectionButton)).isDisplayed();
     }
     @Step("Add button is loaded")
     public boolean addButtonLoaded() {
@@ -34,11 +36,11 @@ public class StartingPage {
     }
 
     @Step("Calendar section button is pressed")
-    public void clickCalendarSectionButton() {
-        calendarSectionButton.click();
+    public void clickTodaySectionButton() {
+        todaySectionButton.click();
     }
     @Step("Add button is pressed")
     public void clickAddButton() {
-        calendarSectionButton.click();
+        addButton.click();
     }
 }

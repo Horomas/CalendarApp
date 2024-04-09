@@ -49,6 +49,10 @@ public class NewEventPage {
     private RemoteWebElement allDayEventSwitch;
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='Add'])[2]")
     private RemoteWebElement addButton;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='DayViewContainerView']/XCUIElementTypeButton[1]")
+    private RemoteWebElement monthView;
+    @iOSXCUITFindBy(accessibility = "List")
+    private RemoteWebElement listView;
 
 
     public NewEventPage(IOSDriver driver) {
@@ -130,6 +134,14 @@ public class NewEventPage {
     public boolean addButtonLoaded() {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(addButton)).isDisplayed();
     }
+    @Step("Switch to month view")
+    public boolean monthViewLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(monthView)).isDisplayed();
+    }
+    @Step("Switch to month view")
+    public boolean listViewLoaded() {
+        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(listView)).isDisplayed();
+    }
 
 
 
@@ -183,6 +195,14 @@ public class NewEventPage {
     @Step("Click add button")
     public void clickAddButton() {
         addButton.click();
+    }
+    @Step("Click list button")
+    public void clickListView() {
+        listView.click();
+    }
+    @Step("Click on month view")
+    public void clickMonthView() {
+        monthView.click();
     }
 
     @Step("Enter hours for event start")
