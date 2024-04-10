@@ -77,11 +77,6 @@ public class NewEventPage {
         return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(endDateEntryField)).isDisplayed();
     }
 
-//    @Step("Start time entry field is loaded")
-//    public boolean startTimeEntryFieldLoaded() {
-//        return new WebDriverWait(driver, GlobalVariables.globalTimeout).until(ExpectedConditions.visibilityOf(startTimeEntryField)).isDisplayed();
-//    }
-
     @Step("Start time entry field is loaded")
     public boolean startTimeEntryFieldLoaded() {
         try {
